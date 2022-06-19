@@ -5,8 +5,7 @@ import 'dotenv/config';
 import { DB_CONFIG } from './src/configs/db';
 import { ORIGIN, NODE_ENV } from './src/configs/config';
 import authRoutes from './src/routes/auth.route';
-import { API_ENDPOINT_NOT_FOUND_ERR, SERVER_ERR } from './src/constants/error';
-import { Err } from './src/interfaces';
+import { globalErrorHandling, handle404 } from './src/helpers/error';
 
 const app: Application = express();
 
@@ -32,23 +31,9 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use("/api/auth", authRoutes);
 
-app.use("*", (req: Request, res: Response, next: NextFunction) => {
-    const error = {
-        status: 404,
-        message: API_ENDPOINT_NOT_FOUND_ERR,
-    };
-    next(error);
-});
+app.use("*", handle404);
 
-app.use((err: Err, req: Request, res: Response, next: NextFunction) => {
-    const status = err.status || 500;
-    const responsePayload = {
-        type: "error",
-        message: err.message || SERVER_ERR,
-        data: err.data || null
-    }
-    res.status(status).json(responsePayload);
-});
+app.use(globalErrorHandling);
 
 const connectDBAndStartServer = async (): Promise<void> => {
     try {
