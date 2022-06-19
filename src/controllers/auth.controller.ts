@@ -27,11 +27,12 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
 
         const createUser = new User({ email, password });
         const user = await createUser.save();
+        const token = createJwtToken({userId: user._id});
         res.status(201).json({
             type: "success",
             message: NEW_USER_CREATED,
             data: {
-                userId: user._id
+                token
             }
         });
     }
