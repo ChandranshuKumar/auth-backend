@@ -1,10 +1,10 @@
-import express, { Application, ErrorRequestHandler, NextFunction, Request, Response } from 'express';
+import express, { Application, Request, Response } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import 'dotenv/config';
-import { DB_CONFIG } from './src/configs/db';
-import { ORIGIN, NODE_ENV } from './src/configs/config';
 import authRoutes from './src/routes/auth.route';
+import { DB_CONFIG } from './src/configs/db';
+import { ORIGIN, NODE_ENV, PORT, HOST } from './src/configs/config';
 import { globalErrorHandling, handle404 } from './src/helpers/error';
 
 const app: Application = express();
@@ -39,9 +39,7 @@ const connectDBAndStartServer = async (): Promise<void> => {
     try {
         await mongoose.connect(DB_CONFIG.dbUrl, DB_CONFIG.connectionOptions);
         console.log('MongoDB connected successfully');
-
-        const PORT: number = Number(process.env.PORT);
-        const HOST: string = `${process.env.HOST}`;
+        
         app.listen(PORT, HOST, (): void => console.log(`Server started on ${PORT}`));
     }
     catch (err) {
