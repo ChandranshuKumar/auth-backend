@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import 'dotenv/config';
 import authRoutes from './src/routes/auth.route';
+import userRoutes from './src/routes/user.route';
 import { DB_CONFIG } from './src/configs/db';
 import { ORIGIN, NODE_ENV, PORT, HOST } from './src/configs/config';
 import { globalErrorHandling, handle404 } from './src/helpers/error';
@@ -30,6 +31,8 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.use("/api/auth", authRoutes);
+
+app.use("/api/user", userRoutes);
 
 app.use("*", handle404);
 

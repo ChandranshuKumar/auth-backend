@@ -5,21 +5,21 @@ import User from '../models/User';
 
 const checkAuth = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const header = req.headers.authorization
+        const header = req.headers.authorization;
         if (!header) {
-            next({ status: 403, message: AUTH_HEADER_MISSING_ERR });
+            next({ status: 401, message: AUTH_HEADER_MISSING_ERR });
             return;
         }
 
         const token = header.split("Bearer ")[1];
         if (!token) {
-            next({ status: 403, message: AUTH_TOKEN_MISSING_ERR });
+            next({ status: 401, message: AUTH_TOKEN_MISSING_ERR });
             return;
         }
 
-        const userId: any = verifyJwtToken(token, next)
+        const userId: any = verifyJwtToken(token);
         if (!userId) {
-            next({ status: 403, message: JWT_DECODE_ERR });
+            next({ status: 401, message: JWT_DECODE_ERR });
             return;
         }
 
