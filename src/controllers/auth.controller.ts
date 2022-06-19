@@ -57,7 +57,6 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
         };
 
         const token = createJwtToken({userId: user._id});
-
         res.status(200).json({
             type: "success",
             message: LOGIN_SUCCESS,
