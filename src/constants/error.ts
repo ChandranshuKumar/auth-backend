@@ -6,5 +6,6 @@ export const AUTH_TOKEN_MISSING_ERR = "auth token is missing";
 export const JWT_DECODE_ERR = "incorrect token";
 
 export const USER_NOT_FOUND_ERR = "User not found";
-export const EMAIL_ALREADY_EXISTS_ERR = "Email number already exists";
+export const EMAIL_DOES_NOT_EXISTS = "Email not found";
+export const EMAIL_ALREADY_EXISTS_ERR = "Email already exists";
 export const EMAIL_INVALID = "Email is invalid, please try again";

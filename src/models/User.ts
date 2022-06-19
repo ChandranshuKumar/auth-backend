@@ -3,6 +3,7 @@ import { model, Schema } from 'mongoose';
 interface IUser {
     email: string,
     password: string,
+    isVerified: boolean,
     createdAt: Date
 }
 
@@ -16,6 +17,10 @@ const userSchema = new Schema<IUser>({
     password: {
         type: String,
         required: true
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
     },
     createdAt: {
         type: Date,
