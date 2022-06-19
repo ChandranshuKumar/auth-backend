@@ -1,7 +1,10 @@
 export const API_ENDPOINT_NOT_FOUND_ERR = "Api endpoint does not found";
 export const SERVER_ERR = "Something went wrong";
+export const CLIENT_ERR = "Invalid request";
 export const AUTH_HEADER_MISSING_ERR = "auth header is missing";
 export const AUTH_TOKEN_MISSING_ERR = "auth token is missing";
 export const JWT_DECODE_ERR = "incorrect token";
+
 export const USER_NOT_FOUND_ERR = "User not found";
-export const ACCESS_DENIED_ERR = "Access deny for normal user";
+export const EMAIL_ALREADY_EXISTS_ERR = "Email number already exists";
+export const EMAIL_INVALID = "Email is invalid, please try again";
