@@ -1,18 +1,9 @@
 import express, { Application, Request, Response } from 'express';
+import mongoose from 'mongoose';
 import 'dotenv/config';
 import { DB_CONFIG } from './src/config/db';
-const mysql = require('mysql');
 
 const app: Application = express();
-
-const dbConnection = mysql.createConnection(DB_CONFIG);
-dbConnection.connect((err: any) => {
-    if(err) {
-        console.error('Database connection failed: ' + err);
-        return;
-    }
-    console.log('Connected to database.');
-})
 
 app.get('/', (req: Request, res: Response) => {
     res.json({
@@ -20,7 +11,19 @@ app.get('/', (req: Request, res: Response) => {
     })
 });
 
-const PORT: number = Number(process.env.PORT) || 8080;
-const HOST = '0.0.0.0';
+const connectDBAndStartServer = async (): Promise<void> => {
+    try {
+        await mongoose.connect(DB_CONFIG.dbUrl, DB_CONFIG.connectionOptions);
+        console.log('MongoDB connected successfully');
 
-app.listen(PORT, HOST, (): void => console.log(`Server started on ${PORT}`));
+        const PORT: number = Number(process.env.PORT);
+        const HOST: string = `${process.env.HOST}`;
+        app.listen(PORT, HOST, (): void => console.log(`Server started on ${PORT}`));
+    }
+    catch (err) {
+        console.log(err);
+        process.exit(1);
+    }
+};
+
+connectDBAndStartServer();

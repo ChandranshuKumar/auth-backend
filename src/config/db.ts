@@ -1,20 +1,24 @@
-const DB_ENDPOINT: string = process.env.RDS_DB_HOSTNAME ?? '';
-const DB_PORT: string = process.env.RDS_DB_PORT ?? '';
-const DB_USERNAME: string = process.env.RDS_DB_USERNAME ?? '';
-const DB_PASSWORD: string = process.env.RDS_DB_PASSWORD ?? '';
-const DB_NAME: string = process.env.RDS_DB_NAME ?? '';
-
+const DB_ENDPOINT: string = process.env.DB_URL ?? '';
+const DB_USERNAME: string = process.env.DB_USERNAME ?? '';
+const DB_PASSWORD: string = process.env.DB_USER_PASSWORD ?? '';
+const DB_URL: string = DB_ENDPOINT.replace('<username>', DB_USERNAME).replace('<password>', DB_PASSWORD);
 
 interface DbConfigType {
-    host: string,
-    user: string,
-    password: string,
-    port: string
+    dbUrl: string,
+    connectionOptions: {
+        keepAlive: boolean,
+        connectTimeoutMS: number,
+        useNewUrlParser: boolean,
+        useUnifiedTopology: boolean
+    }
 }
 
 export const DB_CONFIG: DbConfigType = {
-    host: DB_ENDPOINT,
-    user: DB_USERNAME,
-    password: DB_PASSWORD,
-    port: DB_PORT
+    dbUrl: DB_URL,
+    connectionOptions: {
+        keepAlive: true,
+        connectTimeoutMS: 30000,
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }
 }
