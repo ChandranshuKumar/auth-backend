@@ -5,3 +5,4 @@ build
 .gitignore
 README.md
 npm-debug.log
+env.sample
