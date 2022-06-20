@@ -19,11 +19,6 @@ app.use(
     })
 );
 
-if (NODE_ENV === "development") {
-    const morgan = require("morgan");
-    app.use(morgan("dev"));
-};
-
 app.get('/', (req: Request, res: Response) => {
     res.status(200).json({
         message: "hello world",
