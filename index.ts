@@ -2,11 +2,13 @@ import express, { Application, Request, Response } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import 'dotenv/config';
+import swaggerUi from 'swagger-ui-express';
 import authRoutes from './src/routes/auth.route';
 import userRoutes from './src/routes/user.route';
 import { DB_CONFIG } from './src/configs/db';
 import { ORIGIN, NODE_ENV, PORT, HOST } from './src/configs/config';
 import { globalErrorHandling, handle404 } from './src/helpers/error';
+import swaggerJson from './swagger.json';
 
 const app: Application = express();
 
@@ -28,6 +30,8 @@ app.get('/', (req: Request, res: Response) => {
 app.use("/api/auth", authRoutes);
 
 app.use("/api/user", userRoutes);
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerJson));
 
 app.use("*", handle404);
 
