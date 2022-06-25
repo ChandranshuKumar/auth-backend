@@ -4,6 +4,6 @@ import { getUser } from '../controllers/user.controller';
 
 const router = express.Router();
 
-router.get("/me", checkAuth, getUser);
+router.get('/me', checkAuth, getUser);
 
 export default router;

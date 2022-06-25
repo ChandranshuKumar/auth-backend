@@ -1,4 +1,4 @@
 export type Err = {
-    status?: number;
-    data?: any
-} & Error
+	status?: number;
+	data?: any;
+} & Error;
