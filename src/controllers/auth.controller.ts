@@ -14,7 +14,7 @@ import { createJwtToken } from '../utils/token.util';
 
 export const registerUser = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		let { email = '', password = '' } = req.body;
+		const { email = '', password = '' } = req.body;
 
 		if (!email || !password) {
 			next({ status: 400, message: CLIENT_ERR });
@@ -50,7 +50,7 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
 
 export const loginUser = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		let { email = '', password = '' } = req.body;
+		const { email = '', password = '' } = req.body;
 
 		if (!email || !password) {
 			next({ status: 400, message: CLIENT_ERR });
