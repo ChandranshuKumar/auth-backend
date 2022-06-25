@@ -1,7 +1,7 @@
 export const API_ENDPOINT_NOT_FOUND_ERR = 'Api endpoint does not found';
 export const SERVER_ERR = 'Something went wrong';
 export const CLIENT_ERR = 'Invalid request';
-export const AUTH_HEADER_MISSING_ERR = 'Auth header is missing';
+export const AUTH_HEADER_MISSING_ERR = 'Auth Header is missing';
 export const AUTH_TOKEN_MISSING_ERR = 'Auth token is missing';
 export const JWT_DECODE_ERR = 'Incorrect or Expired token';
 
