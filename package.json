@@ -10,7 +10,8 @@
 		"format-fix": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
 		"lint": "eslint --ignore-path .gitignore .",
 		"lint-fix": "eslint --ignore-path .gitignore --fix .",
-		"build": "tsc"
+		"build": "tsc",
+		"prepare": "husky install"
 	},
 	"keywords": [],
 	"author": "Chandranshu",
@@ -35,11 +36,18 @@
 		"@typescript-eslint/parser": "^5.29.0",
 		"eslint": "^8.18.0",
 		"eslint-config-prettier": "^8.5.0",
+		"husky": "^8.0.1",
 		"nodemon": "^2.0.18",
 		"prettier": "^2.7.1",
 		"swagger-ui-express": "^4.4.0",
 		"ts-node": "^10.8.1",
 		"ts-node-dev": "^2.0.0",
 		"typescript": "^4.7.4"
+	},
+	"lint-staged": {
+		"**/*.+(js|ts)": [
+			"eslint --fix",
+			"prettier --write"
+		]
 	}
 }
