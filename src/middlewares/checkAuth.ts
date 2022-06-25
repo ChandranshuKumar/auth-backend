@@ -22,7 +22,7 @@ const checkAuth = async (req: Request, res: Response, next: NextFunction) => {
 			return;
 		}
 
-		const userId: any = verifyJwtToken(token);
+		const userId: string | undefined = verifyJwtToken(token);
 		if (!userId) {
 			next({ status: 401, message: JWT_DECODE_ERR });
 			return;

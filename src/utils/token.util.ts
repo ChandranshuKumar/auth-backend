@@ -1,4 +1,3 @@
-import { NextFunction } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { JWT_SECRET } from '../configs/config';
 
